@@ -1,0 +1,180 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif; 
+  scroll-behavior: smooth;
+  
+  
+}
+/* Counter page*/
+.counter {
+    background: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .localContainer {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; 
+  }
+  
+  .localContainer h3 {
+    font-size: 35px;
+  }
+  .progressContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  
+  .yearCircle {
+    position: sticky;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .monthCircle {
+    position: sticky;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .dayCircle {
+    position: sticky;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .outer {
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    box-sizing: border-box; 
+    padding: 20px;
+    box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+                -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+  }
+  
+  .inner {
+    
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    fill: transparent;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box; 
+    box-shadow: inset 2px 2px 4px -1px rgba(0, 0, 0, 0.2),
+                inset -2px -2px 4px -1px rgba(255, 255, 255, 0.7),
+                -0.5px -0.5px 0px rgba(255, 255, 255, 1),
+                0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
+                0px 10px 6px -6px rgba(0, 0, 0, 0.05);
+  }
+  #yearProgressPct{
+    font-weight: 600px;
+    color: #555;
+  }
+  .year circle {
+    position:absolute;
+    z-index: 999;
+    fill: none;
+    stroke: url(#GradientColor);
+    stroke-width: 20px;
+    stroke-dasharray: 472;
+    stroke-dashoffset: 472;
+    animation: circleAnimY 2s linear forwards;
+  }
+  .month circle {
+    position:absolute;
+    z-index: 999;
+    fill: none;
+    stroke: url(#GradientColor);
+    stroke-width: 20px;
+    stroke-dasharray: 472;
+    stroke-dashoffset: 472;
+    animation: circleAnimM 2s linear forwards;
+  }
+  .day circle {
+    position:absolute;
+    z-index: 999;
+    fill: none;
+    stroke: url(#GradientColor);
+    stroke-width: 20px;
+    stroke-dasharray: 472;
+    stroke-dashoffset: 472;
+    animation: circleAnimD 2s linear forwards;
+  }
+  /* Animation */
+  @keyframes circleAnimY{
+    100%{
+      stroke-dashoffset: var(--yearProgressAnim);
+  
+    }
+  }
+  @keyframes circleAnimM{
+    100%{
+    
+        stroke-dashoffset: var(--monthProgressAnim); 
+  
+    }
+  }
+    @keyframes circleAnimD{
+    100%{
+       stroke-dashoffset: var(--dayProgressAnim);   
+    }
+  }  
+  .yearCircle svg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .monthCircle svg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .dayCircle svg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .yearLabel{
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .monthLabel{
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .dayLabel{
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  @media screen and (max-width: 800px){
+    .progressContainer{
+        flex-direction: column;
+      }
+  }
