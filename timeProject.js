@@ -10,27 +10,28 @@ setInterval(function() {
   }, 1000);
 
  //Progress Bar 
-    var myYearCircle = document.getElementById('myYearCircle');
-    var yearProgressPercent = document.getElementById('yearProgressPct');
-    var yearProgressPercent2 = document.getElementById('yearProgressPct2');
-    
+ var myYearCircle = document.getElementById('myYearCircle');
+var yearProgressPercent = document.getElementById('yearProgressPct');
+var yearProgressPercent2 = document.getElementById('yearProgressPct2');
+
+// Initialize the start and target dates dynamically based on the current date
+var currentYear = new Date().getFullYear();
+var startDate = new Date(currentYear, 0, 1).getTime(); // January 1st of the current year
+var targetDate = new Date(currentYear + 1, 0, 1).getTime(); // January 1st of the next year
+
 function updateYearProgress() {
     var currentDate = new Date().getTime();
-    var startDate = new Date("2024-01-01T00:00:00").getTime();
-    var targetDate = new Date("2025-01-01T00:00:00").getTime();
-
     const total = targetDate - startDate;
     const startToCurrent = currentDate - startDate;
 
-    // Check if it's beyond the target date (2025)
-    if (startToCurrent >= total) {
-        // Reset targetDate to the next year
-        targetDate = new Date(targetDate).setFullYear(new Date(targetDate).getFullYear() + 1);
-        startDate = currentDate;
+    // Reset start and target dates if the current date has surpassed the target date
+    if (currentDate >= targetDate) {
+        startDate = targetDate; // Start of the new year
+        targetDate = new Date(currentDate.getFullYear() + 1, 0, 1).getTime(); // Start of the year after the next
     }
 
     var yearProgress = (472 - ((startToCurrent / total) * 472));
-    var yearProgressPct = (((startToCurrent / total) * 100)).toFixed(2);
+    var yearProgressPct = ((startToCurrent / total) * 100).toFixed(2);
     yearProgressPercent.innerHTML = yearProgressPct + "%";
     yearProgressPercent2.innerHTML = yearProgressPct + "%";
     
@@ -38,17 +39,19 @@ function updateYearProgress() {
     myYearCircle.style.setProperty('--yearProgressAnim', yearProgress);
 }
 
+// Update the progress every second
 setInterval(updateYearProgress, 1000);
+updateYearProgress(); // Initial call to set the progress on load
 
-updateYearProgress();
 
 var myMonthCircle = document.getElementById('myMonthCircle');
 var monthProgressPercent = document.getElementById('monthProgressPct');
 var monthProgressPercent2 = document.getElementById('monthProgressPct2');
 
 // Set initial start and target months
-var startMonth = new Date("2024-01-01T00:00:00").getTime();
-var targetMonth = new Date("2024-02-01T00:00:00").getTime();
+var currentDate = new Date();
+var startMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getTime();
+var targetMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1).getTime();
 
 function updateMonthProgress() {
     var currentDate = new Date().getTime();
@@ -56,9 +59,9 @@ function updateMonthProgress() {
     const startToCurrent = currentDate - startMonth;
 
     // Check if it's beyond the target month (January 2025)
-    if (startToCurrent >= total) {
-        targetMonth = new Date(targetMonth).setMonth(new Date(targetMonth).getMonth() + 1);
-        startMonth = currentDate;
+    if (currentDate >= targetMonth) {
+        startMonth = targetMonth;
+        targetMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1).getTime();
     }
 
     var monthProgress = (472 - ((startToCurrent / total) * 472));
